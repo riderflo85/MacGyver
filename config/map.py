@@ -100,11 +100,55 @@ class Laby:
             for x, colonne in enumerate(line):
                 if colonne == "P":
                     self.playeur_pos.append((y, x))
-        print(self.playeur_pos[0][1])
+        #print("position avant mouvement du joueur {}".format(self.playeur_pos))
 
 
     def move_right(self):
-        self.playeur_pos[0]
+        self.playeur_pos[0] = list(self.playeur_pos[0])
+        self.playeur_pos[0][1] = self.playeur_pos[0][1]+1
+        self.playeur_pos[0] = tuple(self.playeur_pos[0])
+        #print("position après mouvement vers la droite {}".format(self.playeur_pos))
+        if self.playeur_pos[0] not in self.murs:
+            print("tu peut avancer")
+        else:
+            print("il y a un mur")
+        return self.playeur_pos[0]
+    
+
+    def move_left(self):
+        self.playeur_pos[0] = list(self.playeur_pos[0])
+        self.playeur_pos[0][1] = self.playeur_pos[0][1]-1
+        self.playeur_pos[0] = tuple(self.playeur_pos[0])
+        #print("position après mouvement vers la gauche {}".format(self.playeur_pos))
+        if self.playeur_pos[0] not in self.murs:
+            print("tu peut avancer")
+        else:
+            print("il y a un mur")
+        return self.playeur_pos[0]
+    
+
+    def move_up(self):
+        self.playeur_pos[0] = list(self.playeur_pos[0])
+        self.playeur_pos[0][0] = self.playeur_pos[0][0]-1
+        self.playeur_pos[0] = tuple(self.playeur_pos[0])
+        #print("position après mouvement vers le haut {}".format(self.playeur_pos))
+        if self.playeur_pos[0] not in self.murs:
+            print("tu peut avancer")
+        else:
+            print("il y a un mur")
+        return self.playeur_pos[0]
+
+
+    def move_down(self):
+        self.playeur_pos[0] = list(self.playeur_pos[0])
+        self.playeur_pos[0][0] = self.playeur_pos[0][0]+1
+        self.playeur_pos[0] = tuple(self.playeur_pos[0])
+        #print("position après mouvement vers le haut {}".format(self.playeur_pos))
+        if self.playeur_pos[0] not in self.murs:
+            print("tu peut avancer")
+        else:
+            print("il y a un mur")
+        return self.playeur_pos[0]
 
 
     def print_laby(self):
@@ -118,11 +162,36 @@ class Laby:
 
 def main():
     my_lab = Laby()
-    local_player = (1, 2)
+    start_local_player = (1, 0) # On place le joueur au point de départ avant de lancer la boucle principale (le jeu)
     my_lab.place_objet()
-    my_lab.complet_map(local_player)
-    my_lab.take_playeur_pos()
-    my_lab.print_laby()
+    my_lab.complet_map(start_local_player) # A mettre dans la boucle principale du jeu
+    game_exit = False
+    start_game = True
+    print("\tBienvenu dans le jeux !!!\nVoici les commandes que vous pouvez tapez:\n  - x => quitte la parti\n  - z => aller vers le haut\n  - q => aller vers la gauche\n  - s => aller vers le bas\n  - d => aller vers la droite\n\n Bonne chance!!! ")
+    while game_exit == False:
+        my_lab.take_playeur_pos()
+        if start_game:
+            my_lab.print_laby()
+            start_game = False
+        print("Que voulez-vous faire? Avancer? Quitter? (utilisez les commandes indiquer plus haut)")
+        reponse = input(" ")
+        if reponse.lower() == "z":
+            my_lab.complet_map(my_lab.move_up())
+            my_lab.print_laby()
+        elif reponse.lower() == "q":
+            my_lab.complet_map(my_lab.move_left())
+            my_lab.print_laby()
+        elif reponse.lower() == "s":
+            my_lab.complet_map(my_lab.move_down())
+            my_lab.print_laby()
+        elif reponse.lower() == "d":
+            my_lab.complet_map(my_lab.move_right())
+            my_lab.print_laby()
+        elif reponse.lower() == "x":
+            print("Vous quittez la partie")
+            game_exit = True
+        else:
+            print("Merci d'indiquer une commande valide")
     
 
 main()
