@@ -1,3 +1,4 @@
 /env
 /config/__pycache__
 .vscode
+/config/testPygame.py
