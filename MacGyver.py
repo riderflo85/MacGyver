@@ -1,11 +1,13 @@
 #! /urs/bin/env python3
 # coding: utf-8
 
-from config.map import Laby
+from config.maping import Laby
+from config.move import Move
 
 def main():
     
     my_lab = Laby()
+    playeur_move = Move()
 
     # On place le joueur au point de départ avant de lancer la boucle principale (le jeu)
     start_local_player = (1, 0)
@@ -18,7 +20,7 @@ def main():
     print("\tBienvenu dans le jeux !!!\nVoici les commandes que vous pouvez tapez:\n  - x => quitte la partie\n  - z => aller vers le haut\n  - q => aller vers la gauche\n  - s => aller vers le bas\n  - d => aller vers la droite\n\n Bonne chance!!! ")
     
     while my_lab.game_exit == False:
-        my_lab.take_playeur_pos()
+        playeur_move.take_playeur_pos()
 
         if start_game:
             my_lab.print_laby()
@@ -27,22 +29,22 @@ def main():
         reponse = input(" ")
 
         if reponse.lower() == "z":
-            my_lab.complet_map(my_lab.move_up())
+            my_lab.complet_map(playeur_move.move_up())
             my_lab.print_laby()
             print("\t\t\t", my_lab.object_in_pocket)
 
         elif reponse.lower() == "q":
-            my_lab.complet_map(my_lab.move_left())
+            my_lab.complet_map(playeur_move.move_left())
             my_lab.print_laby()
             print("\t\t\t", my_lab.object_in_pocket)
 
         elif reponse.lower() == "s":
-            my_lab.complet_map(my_lab.move_down())
+            my_lab.complet_map(playeur_move.move_down())
             my_lab.print_laby()
             print("\t\t\t", my_lab.object_in_pocket)
 
         elif reponse.lower() == "d":
-            my_lab.complet_map(my_lab.move_right())
+            my_lab.complet_map(playeur_move.move_right())
             my_lab.print_laby()
             print("\t\t\t", my_lab.object_in_pocket)
 
