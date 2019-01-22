@@ -6,14 +6,14 @@ import pygame
 import os
 
 file_name = "floor-tiles-20x20.png"
-#path_to_file = os.path.join("../ressource", file_name)
+path_to_file = os.path.join("../ressource/img", file_name)
 
 pygame.init()
 pygame.font.init()
 
 fenetre = pygame.display.set_mode((640, 480), pygame.RESIZABLE)
 
-fond = pygame.image.load(file_name).convert()
+fond = pygame.image.load(path_to_file).convert()
 
 fenetre.blit(fond, (0, 0))
 pygame.display.flip()
