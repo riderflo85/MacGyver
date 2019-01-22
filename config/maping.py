@@ -78,14 +78,13 @@ class Laby:
             y, x = ar
             if pos == ar:
                 self.laby_complet[y][x] = "P"
-                if self.object_in_pocket < 3:
-                    self.game_exit = True
-                    print(
-                        "Vous n'avez pas récuperer tout les objets! Le gardiens vous tue !!!")
+#                if self.object_in_pocket < 3:
+#                    self.game_exit = True
+#                    print("Vous n'avez pas récuperer tout les objets! Le gardiens vous tue !!!")
             else:
                 self.laby_complet[y][x] = "A"
 
-        for ob in self.pos_object:
+        for ob in self.pos_object[:]:
             y, x = ob
             if pos == ob:
                 self.laby_complet[y][x] = "P"
@@ -95,8 +94,6 @@ class Laby:
                 self.laby_complet[y][x] = "O"
 
     
-    def print_laby(self, *end):
+    def print_laby(self):
         for part_of_lab in self.laby_complet:
             print(part_of_lab)
-        if end:
-            self.game_exit = True
