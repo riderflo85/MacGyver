@@ -13,7 +13,7 @@ class Laby:
     def __init__(self):
         self.laby_complet = []
         self.murs = []
-        self.passages = []
+        self.passage = []
         self.personnage = []
         self.arrive = []
         self.local_x = int
@@ -33,7 +33,7 @@ class Laby:
                     if colonne == "x":
                         self.murs.append((y, x))
                     elif colonne == ".":
-                        self.passages.append((y, x))
+                        self.passage.append((y, x))
                     elif colonne == "d":
                         self.personnage.append((y, x))
                     elif colonne == "a":
@@ -52,7 +52,7 @@ class Laby:
         self.pos_object = []
         nb_object = 0
         while nb_object <= 2:  # 2 car en programmation on compte a partir de 0
-            self.pos_object.append(random.choice(self.passages))
+            self.pos_object.append(random.choice(self.passage))
             nb_object += 1
 
     def complet_map(self, pos):
@@ -60,7 +60,7 @@ class Laby:
             y, x = m
             self.laby_complet[y][x] = "#"
 
-        for pa in self.passages:
+        for pa in self.passage:
             y, x = pa
             if pos == pa:
                 self.laby_complet[y][x] = "P"

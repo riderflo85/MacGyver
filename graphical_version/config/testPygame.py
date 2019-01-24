@@ -6,7 +6,7 @@ import random
 import os
 
 
-path_to_file_sol = os.path.join("../../ressource/img", "sol.png")
+path_to_file_floor = os.path.join("../../ressource/img", "sol.png")
 path_to_file_mur = os.path.join("../../ressource/img", "mur.png")
 path_to_file_playeur = os.path.join("../../ressource/img", "MacGyver.png")
 path_to_file_gardien = os.path.join("../../ressource/img", "Gardien.png")
@@ -15,18 +15,18 @@ path_to_file_ether = os.path.join("../../ressource/img", "ether.png")
 path_to_file_tube = os.path.join("../../ressource/img", "tube.png")
 path_to_file_map = os.path.join("../../ressource/", "map.txt")
 
-passages = []
-list_murs = []
+passage = []
+wall_list = []
 gardien_pos = []
 pos_object = {}
 
 pygame.init()
 pygame.font.init()
 
-fenetre = pygame.display.set_mode((600, 600), pygame.RESIZABLE)
+window = pygame.display.set_mode((600, 600), pygame.RESIZABLE)
 
-sol = pygame.image.load(path_to_file_sol).convert()
-mur = pygame.image.load(path_to_file_mur).convert()
+floor = pygame.image.load(path_to_file_floor).convert()
+wall = pygame.image.load(path_to_file_mur).convert()
 playeur = pygame.image.load(path_to_file_playeur).convert_alpha()
 gardien = pygame.image.load(path_to_file_gardien).convert_alpha()
 aiguille = pygame.image.load(path_to_file_aiguille).convert()
@@ -56,18 +56,18 @@ def load_map_file():
                 y = nb_colomn * 40
 
                 if colomn == "x":
-                    list_murs.append((x, y))
-                    fenetre.blit(mur, (x, y))
+                    wall_list.append((x, y))
+                    window.blit(wall, (x, y))
                     pygame.display.flip()
 
                 elif colomn == ".":
-                    passages.append((x, y))
-                    fenetre.blit(sol, (x, y))
+                    passage.append((x, y))
+                    window.blit(floor, (x, y))
                     pygame.display.flip()
 
                 elif colomn == "a":
                     gardien_pos.append((x, y))
-                    fenetre.blit(gardien, (x, y))
+                    window.blit(gardien, (x, y))
                     pygame.display.flip()
 
                 else:
@@ -80,24 +80,23 @@ def load_map_file():
 def place_objet():
         
     for ob in list_object:
-        pos_object[random.choice(passages)] = ob
+        pos_object[random.choice(passage)] = ob
 
     for keys, value in pos_object.items():
-        fenetre.blit(value, keys)
+        window.blit(value, keys)
         pygame.display.flip()
 
 
 def refresh_map():
 
-    for pos_mur in list_murs:
-        fenetre.blit(mur, pos_mur)
+    for pos_wall in wall_list:
+        window.blit(wall, pos_wall)
     
-    for pos_passages in passages:
-        fenetre.blit(sol, pos_passages)
+    for pos_passage in passage:
+        window.blit(floor, pos_passage)
 
     for keys, value in pos_object.items():
-        fenetre.blit(value, keys)
-        pygame.display.flip()
+        window.blit(value, keys)
 
 
 def take_object(ply_pos):
@@ -126,7 +125,7 @@ class Move:
 
         self.predict_playeur_pos = (ply_pos[0], ply_pos[1]-40)
 
-        if self.predict_playeur_pos not in list_murs:
+        if self.predict_playeur_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -139,7 +138,7 @@ class Move:
 
         self.predict_playeur_pos = (ply_pos[0], ply_pos[1]+40)
 
-        if self.predict_playeur_pos not in list_murs:
+        if self.predict_playeur_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -152,7 +151,7 @@ class Move:
 
         self.predict_playeur_pos = (ply_pos[0]-40, ply_pos[1])
 
-        if self.predict_playeur_pos not in list_murs:
+        if self.predict_playeur_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -165,7 +164,7 @@ class Move:
 
         self.predict_playeur_pos = (ply_pos[0]+40, ply_pos[1])
 
-        if self.predict_playeur_pos not in list_murs:
+        if self.predict_playeur_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -187,7 +186,7 @@ place_objet()
 
 pygame.display.flip()
 
-#print(passages,"\n",pos_object)
+#print(passage,"\n",pos_object)
 
 continuer = True
 
@@ -231,6 +230,6 @@ while continuer:
             if event.key == pygame.K_q:
                 continuer = False
     
-    fenetre.blit(playeur, playeur_pos)
+    window.blit(playeur, playeur_pos)
     pygame.display.flip()
     
