@@ -1,3 +1,5 @@
 /env
 /config/__pycache__
 .vscode
+/console_version/config/__pycache__
+/graphical_version/config/__pycache__

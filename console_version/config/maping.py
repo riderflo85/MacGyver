@@ -6,7 +6,7 @@ import os
 
 file_name = "map.txt"
 directory = os.path.dirname(__file__)
-path_to_file = os.path.join(directory, "../ressource", file_name)
+path_to_file = os.path.join(directory, "../../ressource", file_name)
 
 class Laby:
 

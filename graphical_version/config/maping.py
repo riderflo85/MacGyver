@@ -6,7 +6,7 @@ import os
 
 file_name = "map.txt"
 directory = os.path.dirname(__file__)
-path_to_file = os.path.join(directory, "../ressource", file_name)
+path_to_file = os.path.join(directory, "../../ressource", file_name)
 
 class Laby:
 
@@ -14,39 +14,44 @@ class Laby:
         self.laby_complet = []
         self.murs = []
         self.passages = []
-        self.personnage = []
-        self.arrive = []
-        self.local_x = int
-        self.local_y = int
+        self.init_playeur_pos = []
+        self.gardien_pos = []
+        self.nb_colomn = int
+        self.nb_line = int
         self.object_in_pocket = 0
         self.game_exit = False
 
         self.load_map_file()
-        self.create_white_map()
 
     def load_map_file(self):
-        with open(path_to_file, 'r') as lab:
-            for y, line in enumerate(lab):
-                for x, colonne in enumerate(line):
-                    self.local_x = x
-                    self.local_y = y
-                    if colonne == "x":
-                        self.murs.append((y, x))
-                    elif colonne == ".":
-                        self.passages.append((y, x))
-                    elif colonne == "d":
-                        self.personnage.append((y, x))
-                    elif colonne == "a":
-                        self.arrive.append((y, x))
+        with open(path_to_file_map, 'r') as lab:
+            self.nb_colomn = 0
+            for line in lab:
+                self.nb_line = 0
+                for colomn in line:
+                    x = self.nb_line * 40
+                    y = self.nb_colomn * 40
+                    if colomn == "x":
+                        self.murs.append((x, y))
+                        fenetre.blit(mur, (x, y))
+                        pygame.display.flip()
+                    elif colomn == ".":
+                        self.passages.append((x, y))
+                        fenetre.blit(sol, (x, y))
+                        pygame.display.flip()
+                    elif colomn == "d":
+                        self.init_playeur_pos.append((x, y))
+                        fenetre.blit(playeur, (x, y))
+                        pygame.display.flip()
+                    elif colomn == "a":
+                        self.gardien_pos.append((x, y))
+                        fenetre.blit(gardien, (x, y))
+                        pygame.display.flip()
                     else:
                         pass
+                    self.nb_line += 1
+                self.nb_colomn += 1
 
-    def create_white_map(self):
-        self.laby_complet = [[""]] * (self.local_y+1)
-        nb_colone = 0
-        while nb_colone < (self.local_x+1):
-            self.laby_complet[nb_colone] = [[""]] * (self.local_x+1)
-            nb_colone += 1
 
     def place_objet(self):
         self.pos_object = []
@@ -54,6 +59,12 @@ class Laby:
         while nb_object <= 2:  # 2 car en programmation on compte a partir de 0
             self.pos_object.append(random.choice(self.passages))
             nb_object += 1
+
+        fenetre.blit(aiguille, pos_object[0])
+        fenetre.blit(ether, pos_object[1])
+        fenetre.blit(tube, pos_object[2])
+        pygame.display.flip()
+
 
     def complet_map(self, pos):
         for m in self.murs:
@@ -89,8 +100,3 @@ class Laby:
                 self.object_in_pocket += 1
             else:
                 self.laby_complet[y][x] = "O"
-
-    
-    def print_laby(self):
-        for part_of_lab in self.laby_complet:
-            print(part_of_lab)
