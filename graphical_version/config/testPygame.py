@@ -9,7 +9,7 @@ import os
 path_to_file_floor = os.path.join("../../ressource/img", "sol.png")
 path_to_file_mur = os.path.join("../../ressource/img", "mur.png")
 path_to_file_playeur = os.path.join("../../ressource/img", "MacGyver.png")
-path_to_file_gardien = os.path.join("../../ressource/img", "Gardien.png")
+path_to_file_guardian = os.path.join("../../ressource/img", "Gardien.png")
 path_to_file_aiguille = os.path.join("../../ressource/img", "aiguille.png")
 path_to_file_ether = os.path.join("../../ressource/img", "ether.png")
 path_to_file_tube = os.path.join("../../ressource/img", "tube.png")
@@ -17,19 +17,19 @@ path_to_file_map = os.path.join("../../ressource/", "map.txt")
 
 passage = []
 wall_list = []
-gardien_pos = []
+guardian_pos = []
 pos_object = {}
 
 pygame.init()
 pygame.font.init()
 
-window = pygame.display.set_mode((600, 600), pygame.RESIZABLE)
+window = pygame.display.set_mode((600, 700))
 
 floor = pygame.image.load(path_to_file_floor).convert()
 wall = pygame.image.load(path_to_file_mur).convert()
 playeur = pygame.image.load(path_to_file_playeur).convert_alpha()
-gardien = pygame.image.load(path_to_file_gardien).convert_alpha()
-aiguille = pygame.image.load(path_to_file_aiguille).convert()
+guardian = pygame.image.load(path_to_file_guardian).convert_alpha()
+aiguille = pygame.image.load(path_to_file_aiguille).convert_alpha()
 ether = pygame.image.load(path_to_file_ether).convert_alpha()
 tube = pygame.image.load(path_to_file_tube).convert_alpha()
 
@@ -66,8 +66,8 @@ def load_map_file():
                     pygame.display.flip()
 
                 elif colomn == "a":
-                    gardien_pos.append((x, y))
-                    window.blit(gardien, (x, y))
+                    guardian_pos.append((x, y))
+                    window.blit(guardian, (x, y))
                     pygame.display.flip()
 
                 else:

@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 # conding: utf-8
+
+# Module Python
 import pygame
 import random
 
@@ -8,15 +10,16 @@ class Objects():
     def __init__(self):
 
         self.pos_objects = {}
-        self.objects_in_pocket = 0
+        self.in_pocket = 0
 
     
-    def place_objects(self, list_objects, passage, window):
+    def place_objects(self, list_objects, passage, floor, window):
         
         for ob in list_objects:
             self.pos_objects[random.choice(passage)] = ob
 
         for keys, value in self.pos_objects.items():
+            window.blit(floor, keys)
             window.blit(value, keys)
             pygame.display.flip()
 
@@ -29,4 +32,4 @@ class Objects():
         for pos_ob in self.dict_temp.keys():
             if self.tuple_playeur_pos == pos_ob:
                 self.pos_objects.pop(pos_ob)
-                self.objects_in_pocket += 1
+                self.in_pocket += 1
