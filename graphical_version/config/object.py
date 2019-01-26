@@ -26,10 +26,10 @@ class Objects():
     
     def take_objects(self, ply_pos):
 
-        self.tuple_playeur_pos = (ply_pos[0], ply_pos[1])
+        self.tuple_player_pos = (ply_pos[0], ply_pos[1])
         self.dict_temp = self.pos_objects.copy()
 
         for pos_ob in self.dict_temp.keys():
-            if self.tuple_playeur_pos == pos_ob:
+            if self.tuple_player_pos == pos_ob:
                 self.pos_objects.pop(pos_ob)
                 self.in_pocket += 1

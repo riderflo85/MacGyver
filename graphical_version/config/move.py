@@ -11,9 +11,9 @@ class Move:
 
     def move_up(self, ply_pos, wall_list):
 
-        self.predict_playeur_pos = (ply_pos[0], ply_pos[1]-40)
+        self.predict_player_pos = (ply_pos[0], ply_pos[1]-40)
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -24,9 +24,9 @@ class Move:
 
     def move_down(self, ply_pos, wall_list):
 
-        self.predict_playeur_pos = (ply_pos[0], ply_pos[1]+40)
+        self.predict_player_pos = (ply_pos[0], ply_pos[1]+40)
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -37,9 +37,9 @@ class Move:
 
     def move_left(self, ply_pos, wall_list):
 
-        self.predict_playeur_pos = (ply_pos[0]-40, ply_pos[1])
+        self.predict_player_pos = (ply_pos[0]-40, ply_pos[1])
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -50,9 +50,9 @@ class Move:
 
     def move_right(self, ply_pos, wall_list):
 
-        self.predict_playeur_pos = (ply_pos[0]+40, ply_pos[1])
+        self.predict_player_pos = (ply_pos[0]+40, ply_pos[1])
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:

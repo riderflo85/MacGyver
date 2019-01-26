@@ -10,7 +10,7 @@ class Laby:
     def __init__(self):
         self.wall_list = []
         self.passages = []
-        self.init_playeur_pos = []
+        self.init_player_pos = []
         self.pos_start = []
         self.guardian_pos = []
         self.object_in_pocket = 0

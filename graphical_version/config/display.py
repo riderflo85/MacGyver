@@ -12,7 +12,7 @@ class Display():
         self.directory = os.path.dirname(__file__)
         self.img_floor = os.path.join(self.directory, "../../ressource/img", "sol.png")
         self.img_wall = os.path.join(self.directory, "../../ressource/img", "mur.png")
-        self.img_playeur = os.path.join(self.directory, "../../ressource/img", "MacGyver.png")
+        self.img_player = os.path.join(self.directory, "../../ressource/img", "MacGyver.png")
         self.img_guardian = os.path.join(self.directory, "../../ressource/img", "Gardien.png")
         self.img_aiguille = os.path.join(self.directory, "../../ressource/img", "aiguille.png")
         self.img_ether = os.path.join(self.directory, "../../ressource/img", "ether.png")
@@ -22,11 +22,9 @@ class Display():
         self.file_map = os.path.join(self.directory, "../../ressource/", "map.txt")
         self.background1 = pygame.Surface((600, 700))
         self.background2 = pygame.Surface((600, 700))
-        #self.type_text = None
-        #self.text = None
-        #self.text_pos = None
+        self.text_status = "Objects in pocket:"
 
-        self.COLOR = 0, 0, 0
+        self.COLOR = 81, 25, 0
         pygame.init()
         pygame.font.init()
 
@@ -35,7 +33,7 @@ class Display():
 
         self.floor = pygame.image.load(self.img_floor).convert()
         self.wall = pygame.image.load(self.img_wall).convert()
-        self.playeur = pygame.image.load(self.img_playeur).convert_alpha()
+        self.player = pygame.image.load(self.img_player).convert_alpha()
         self.guardian = pygame.image.load(self.img_guardian).convert_alpha()
         self.aiguille = pygame.image.load(self.img_aiguille).convert_alpha()
         self.ether = pygame.image.load(self.img_ether).convert_alpha()
@@ -50,11 +48,16 @@ class Display():
             self.window.blit(self.background1, (0, 0))
 
     
-    def object_counter(self, ob):
+    def object_counter(self, ob, the_end):
         
             self.background2.blit(self.counter_ob, (0, 600))
             self.type_text = pygame.font.SysFont('ani', 56)
-            self.text = self.type_text.render("Objects in pocket: {}".format(ob), True, self.COLOR)
+            if the_end:
+                self.text_status = "YOU WINNER !!!"
+                self.text = self.type_text.render("{}".format(self.text_status), True, self.COLOR)
+            else:
+                self.text = self.type_text.render("{} {}/3".format(self.text_status, ob), True, self.COLOR)
+
             self.text_pos = self.text.get_rect()
             self.text_pos.centerx = self.window.get_rect().centerx
             self.text_pos.centery = 650

@@ -11,14 +11,15 @@ class Game:
 
         self.start_game = True
         self.launch_partie = False
+        self.the_end = False
 
     
-    def init_game(self, playeur, pos_start, window):
+    def init_game(self, player, pos_start, window):
 
         self.window = window
         self.pos_start = pos_start
-        self.playeur_pos = playeur.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
-        self.playeur_img = playeur
+        self.player_pos = player.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
+        self.player_img = player
 
 
     def play_game(self, moving, counter, obj, wall_list, refresh_map):
@@ -32,38 +33,38 @@ class Game:
                 if event.type == pygame.KEYDOWN:
 
                     if event.key == pygame.K_RIGHT:
-                        moving.move_right(self.playeur_pos, wall_list)
+                        moving.move_right(self.player_pos, wall_list)
                         if moving.move_valide:
-                            self.playeur_pos = self.playeur_pos.move(40, 0)
-                            obj.take_objects(self.playeur_pos)
+                            self.player_pos = self.player_pos.move(40, 0)
+                            obj.take_objects(self.player_pos)
                             refresh_map
 
                     if event.key == pygame.K_LEFT:
-                        moving.move_left(self.playeur_pos, wall_list)
+                        moving.move_left(self.player_pos, wall_list)
                         if moving.move_valide:
-                            self.playeur_pos = self.playeur_pos.move(-40, 0)
-                            obj.take_objects(self.playeur_pos)
+                            self.player_pos = self.player_pos.move(-40, 0)
+                            obj.take_objects(self.player_pos)
                             refresh_map
 
                     if event.key == pygame.K_UP:
-                        moving.move_up(self.playeur_pos, wall_list)
+                        moving.move_up(self.player_pos, wall_list)
                         if moving.move_valide:
-                            self.playeur_pos = self.playeur_pos.move(0, -40)
-                            obj.take_objects(self.playeur_pos)
+                            self.player_pos = self.player_pos.move(0, -40)
+                            obj.take_objects(self.player_pos)
                             refresh_map
 
                     if event.key == pygame.K_DOWN:
-                        moving.move_down(self.playeur_pos, wall_list)
+                        moving.move_down(self.player_pos, wall_list)
                         if moving.move_valide:
-                            self.playeur_pos = self.playeur_pos.move(0, 40)
-                            obj.take_objects(self.playeur_pos)
+                            self.player_pos = self.player_pos.move(0, 40)
+                            obj.take_objects(self.player_pos)
                             refresh_map
 
                     if event.key == pygame.K_q:
                         self.start_game = False
     
         counter
-        self.window.blit(self.playeur_img, self.playeur_pos)
+        self.window.blit(self.player_img, self.player_pos)
         pygame.display.flip()
 
 
@@ -81,18 +82,16 @@ class Game:
             pygame.display.flip()
 
 
-    def end_game(self, nb_object, pos_arrived, playeur):
+    def end_game(self, nb_object, pos_arrived, player):
 
-        self.tuple_playeur_pos = (self.playeur_pos[0], self.playeur_pos[1])
+        self.tuple_player_pos = (self.player_pos[0], self.player_pos[1])
 
-        if self.tuple_playeur_pos in pos_arrived:
+        if self.tuple_player_pos in pos_arrived:
             if nb_object == 3:
-                self.start_game = False
-                print("BIEN JOUER VOUS AVEZ GAGNER !!!!")
+                self.the_end = True
 
             else:
-                self.playeur_pos = playeur.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
-                print("Vous n'avez pas tout les objets dans votre sac, le guardian vous tue !!!")
+                self.player_pos = player.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
                 
         else:
             pass

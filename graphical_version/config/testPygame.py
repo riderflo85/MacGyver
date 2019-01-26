@@ -8,7 +8,7 @@ import os
 
 path_to_file_floor = os.path.join("../../ressource/img", "sol.png")
 path_to_file_mur = os.path.join("../../ressource/img", "mur.png")
-path_to_file_playeur = os.path.join("../../ressource/img", "MacGyver.png")
+path_to_file_player = os.path.join("../../ressource/img", "MacGyver.png")
 path_to_file_guardian = os.path.join("../../ressource/img", "Gardien.png")
 path_to_file_aiguille = os.path.join("../../ressource/img", "aiguille.png")
 path_to_file_ether = os.path.join("../../ressource/img", "ether.png")
@@ -27,13 +27,13 @@ window = pygame.display.set_mode((600, 700))
 
 floor = pygame.image.load(path_to_file_floor).convert()
 wall = pygame.image.load(path_to_file_mur).convert()
-playeur = pygame.image.load(path_to_file_playeur).convert_alpha()
+player = pygame.image.load(path_to_file_player).convert_alpha()
 guardian = pygame.image.load(path_to_file_guardian).convert_alpha()
 aiguille = pygame.image.load(path_to_file_aiguille).convert_alpha()
 ether = pygame.image.load(path_to_file_ether).convert_alpha()
 tube = pygame.image.load(path_to_file_tube).convert_alpha()
 
-playeur_pos = playeur.get_rect(x=0, y=40)
+player_pos = player.get_rect(x=0, y=40)
 
 object_in_pocket = 0
 list_object = [aiguille, ether, tube]
@@ -101,12 +101,12 @@ def refresh_map():
 
 def take_object(ply_pos):
 
-    tuple_playeur_pos = (ply_pos[0], ply_pos[1])
+    tuple_player_pos = (ply_pos[0], ply_pos[1])
     dict_temp = pos_object.copy()
 
     for pos_ob in dict_temp.keys():
         
-        if tuple_playeur_pos == pos_ob:
+        if tuple_player_pos == pos_ob:
 
             pos_object.pop(pos_ob)
             global object_in_pocket
@@ -123,9 +123,9 @@ class Move:
 
     def move_up(self, ply_pos):
 
-        self.predict_playeur_pos = (ply_pos[0], ply_pos[1]-40)
+        self.predict_player_pos = (ply_pos[0], ply_pos[1]-40)
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -136,9 +136,9 @@ class Move:
 
     def move_down(self, ply_pos):
 
-        self.predict_playeur_pos = (ply_pos[0], ply_pos[1]+40)
+        self.predict_player_pos = (ply_pos[0], ply_pos[1]+40)
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -149,9 +149,9 @@ class Move:
 
     def move_left(self, ply_pos):
 
-        self.predict_playeur_pos = (ply_pos[0]-40, ply_pos[1])
+        self.predict_player_pos = (ply_pos[0]-40, ply_pos[1])
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -162,9 +162,9 @@ class Move:
 
     def move_right(self, ply_pos):
 
-        self.predict_playeur_pos = (ply_pos[0]+40, ply_pos[1])
+        self.predict_player_pos = (ply_pos[0]+40, ply_pos[1])
 
-        if self.predict_playeur_pos not in wall_list:
+        if self.predict_player_pos not in wall_list:
             self.move_valide = True
 
         else:
@@ -200,36 +200,36 @@ while continuer:
         if event.type == pygame.KEYDOWN:
 
             if event.key == pygame.K_RIGHT:
-                moving.move_right(playeur_pos)
+                moving.move_right(player_pos)
                 if moving.move_valide:
-                    playeur_pos = playeur_pos.move(40, 0)
-                    take_object(playeur_pos)
+                    player_pos = player_pos.move(40, 0)
+                    take_object(player_pos)
                     refresh_map()
 
             if event.key == pygame.K_LEFT:
-                moving.move_left(playeur_pos)
+                moving.move_left(player_pos)
                 if moving.move_valide:
-                    playeur_pos = playeur_pos.move(-40, 0)
-                    take_object(playeur_pos)
+                    player_pos = player_pos.move(-40, 0)
+                    take_object(player_pos)
                     refresh_map()
 
             if event.key == pygame.K_UP:
-                moving.move_up(playeur_pos)
+                moving.move_up(player_pos)
                 if moving.move_valide:
-                    playeur_pos = playeur_pos.move(0, -40)
-                    take_object(playeur_pos)
+                    player_pos = player_pos.move(0, -40)
+                    take_object(player_pos)
                     refresh_map()
 
             if event.key == pygame.K_DOWN:
-                moving.move_down(playeur_pos)
+                moving.move_down(player_pos)
                 if moving.move_valide:
-                    playeur_pos = playeur_pos.move(0, 40)
-                    take_object(playeur_pos)
+                    player_pos = player_pos.move(0, 40)
+                    take_object(player_pos)
                     refresh_map()
 
             if event.key == pygame.K_q:
                 continuer = False
     
-    window.blit(playeur, playeur_pos)
+    window.blit(player, player_pos)
     pygame.display.flip()
     

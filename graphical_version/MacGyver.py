@@ -24,13 +24,13 @@ def main():
     
     objects.place_objects(list_objects, my_lab.passages, display.floor, display.window)
 
-    state.init_game(display.playeur, my_lab.pos_start, display.window)
+    state.init_game(display.player, my_lab.pos_start, display.window)
 
     my_lab.guardian_zone_calculation()
 
     while state.start_game:
-        state.play_game(moving, display.object_counter(objects.in_pocket), objects, my_lab.wall_list, my_lab.refresh_map(display.wall, display.floor, display.guardian, objects.pos_objects, display.window))
-        state.end_game(objects.in_pocket, my_lab.guardian_radius, display.playeur)
+        state.play_game(moving, display.object_counter(objects.in_pocket, state.the_end), objects, my_lab.wall_list, my_lab.refresh_map(display.wall, display.floor, display.guardian, objects.pos_objects, display.window))
+        state.end_game(objects.in_pocket, my_lab.guardian_radius, display.player)
 
 
 main()
