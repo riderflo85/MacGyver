@@ -29,7 +29,7 @@ def main():
     my_lab.guardian_zone_calculation()
 
     while state.start_game:
-        state.play_game(moving, my_lab.refresh_map(display.wall, display.floor, objects.pos_objects, display.window), objects, my_lab.wall_list, display.counter)
+        state.play_game(moving, display.object_counter(objects.in_pocket), objects, my_lab.wall_list, my_lab.refresh_map(display.wall, display.floor, display.guardian, objects.pos_objects, display.window))
         state.end_game(objects.in_pocket, my_lab.guardian_radius, display.playeur)
 
 

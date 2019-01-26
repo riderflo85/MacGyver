@@ -44,6 +44,7 @@ class Laby:
                         pygame.display.flip()
 
                     elif colomn == "a":
+                        self.passages.append((x, y))
                         self.guardian_pos.append((x, y))
                         window.blit(floor, (x, y))
                         window.blit(guardian, (x, y))
@@ -56,9 +57,7 @@ class Laby:
                 self.nb_colomn += 1
 
 
-    def refresh_map(self, wall, floor, pos_objects, window):
-
-        window.blit(floor, self.pos_start[0])
+    def refresh_map(self, wall, floor, gard, pos_objects, window):
 
         for pos_wall in self.wall_list:
             window.blit(wall, pos_wall)
@@ -68,6 +67,11 @@ class Laby:
 
         for keys, value in pos_objects.items():
             window.blit(value, keys)
+
+        window.blit(floor, self.pos_start[0])
+        window.blit(gard, self.guardian_pos[0])
+        
+        pygame.display.flip()
 
     
     def guardian_zone_calculation(self):

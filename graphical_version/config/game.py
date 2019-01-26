@@ -21,7 +21,7 @@ class Game:
         self.playeur_img = playeur
 
 
-    def play_game(self, moving, refresh_map, obj, wall_list, counter):
+    def play_game(self, moving, counter, obj, wall_list, refresh_map):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -61,9 +61,8 @@ class Game:
 
                     if event.key == pygame.K_q:
                         self.start_game = False
-                
-        counter
     
+        counter
         self.window.blit(self.playeur_img, self.playeur_pos)
         pygame.display.flip()
 
