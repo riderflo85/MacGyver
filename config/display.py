@@ -56,7 +56,7 @@ class Display():
                 self.text_status = "YOU WINNER !!!"
                 self.text = self.type_text.render("{}".format(self.text_status), True, self.COLOR)
             else:
-                self.text = self.type_text.render("{} {}/3".format(self.text_status, ob), True, self.COLOR)
+                self.text = self.type_text.render("{}{}/3".format(self.text_status, ob), True, self.COLOR)
 
             self.text_pos = self.text.get_rect()
             self.text_pos.centerx = self.window.get_rect().centerx
