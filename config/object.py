@@ -6,15 +6,19 @@ import pygame
 import random
 
 class Objects():
+    """This class manages the actions of objects"""
 
     def __init__(self):
+        """Initializes variables useful to objects"""
 
         self.pos_objects = {}
         self.in_pocket = 0
 
     
     def place_objects(self, list_objects, passage, floor, window):
-        
+        """Place objects randomly"""
+
+        # Parcours et stock la position des objets ainsi que leurs nom dans un dictionnaire
         for ob in list_objects:
             self.pos_objects[random.choice(passage)] = ob
 
@@ -25,6 +29,7 @@ class Objects():
 
     
     def take_objects(self, ply_pos):
+        """Recovers an object if the player passes on it"""
 
         self.tuple_player_pos = (ply_pos[0], ply_pos[1])
         self.dict_temp = self.pos_objects.copy()

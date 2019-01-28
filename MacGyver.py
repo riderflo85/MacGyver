@@ -10,6 +10,7 @@ from config.object import Objects
 
 def main():
     
+    # Initialize objects
     my_lab = Laby()
     moving = Move()
     display = Display()
@@ -18,16 +19,22 @@ def main():
 
     list_objects = [display.aiguille, display.ether, display.tube]
 
+    # Launch the welcome screen
     state.start_screen(display.home_page())
 
+    # Load in memory the map of the game
     my_lab.load_map_file(display.file_map ,display.wall, display.window, display.floor, display.guardian)
     
+    # Place objects
     objects.place_objects(list_objects, my_lab.passages, display.floor, display.window)
 
+    # Place the player on the starting position
     state.init_game(display.player, my_lab.pos_start, display.window)
 
+    # Calculating the guardian’s field of action
     my_lab.guardian_zone_calculation()
 
+    # Loop main of the game
     while state.start_game:
         state.play_game(moving, display.object_counter(objects.in_pocket, state.the_end), objects, my_lab.wall_list, my_lab.refresh_map(display.wall, display.floor, display.guardian, objects.pos_objects, display.window))
         state.end_game(objects.in_pocket, my_lab.guardian_radius, display.player)

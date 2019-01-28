@@ -6,8 +6,11 @@ import pygame
 
 
 class Game:
+    """This class manages the behavior of the game"""
+
 
     def __init__(self):
+        """Initializes end of game launch variables"""
 
         self.start_game = True
         self.launch_partie = False
@@ -15,6 +18,7 @@ class Game:
 
     
     def init_game(self, player, pos_start, window):
+        """Initializes the starting position of the player"""
 
         self.window = window
         self.pos_start = pos_start
@@ -23,6 +27,7 @@ class Game:
 
 
     def play_game(self, moving, counter, obj, wall_list, refresh_map):
+        """Manages game events and player position display"""
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -69,6 +74,7 @@ class Game:
 
 
     def start_screen(self, homepage):
+        """Load the homepage"""
         
         while self.launch_partie == False:
             homepage
@@ -83,11 +89,13 @@ class Game:
 
 
     def end_game(self, nb_object, pos_arrived, player):
+        """Condition of the end of game"""
 
         self.tuple_player_pos = (self.player_pos[0], self.player_pos[1])
 
         if self.tuple_player_pos in pos_arrived:
             if nb_object == 3:
+                self.launch_partie = False
                 self.the_end = True
 
             else:

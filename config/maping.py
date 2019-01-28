@@ -1,13 +1,18 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+# Module Python
 import os
 import pygame
 
 
 class Laby:
+    """This class create the graphic map"""
+
 
     def __init__(self):
+        """Initializes lists to contain game elements"""
+
         self.wall_list = []
         self.passages = []
         self.init_player_pos = []
@@ -18,12 +23,17 @@ class Laby:
 
 
     def load_map_file(self, file_map, wall, window, floor, guardian):
+        """Opens and runs the map reference file.
+        Store items from lists"""
+
         with open(file_map, 'r') as lab:
             self.nb_colomn = 0
 
+            # Path the lines of the file one by one
             for line in lab:
                 self.nb_line = 0
-
+                
+                # Route each character in the current line
                 for colomn in line:
                     x = self.nb_line * 40
                     y = self.nb_colomn * 40
@@ -58,6 +68,7 @@ class Laby:
 
 
     def refresh_map(self, wall, floor, gard, pos_objects, window):
+        """Updates the map with the new player position"""
 
         for pos_wall in self.wall_list:
             window.blit(wall, pos_wall)
@@ -75,6 +86,7 @@ class Laby:
 
     
     def guardian_zone_calculation(self):
+        """Calculating the guardian’s field of action"""
 
         self.x = self.guardian_pos[0][0]
         self.y = self.guardian_pos[0][1]
