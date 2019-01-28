@@ -18,7 +18,8 @@ class Objects():
     def place_objects(self, list_objects, passage, floor, window):
         """Place objects randomly"""
 
-        # Parcours et stock la position des objets ainsi que leurs nom dans un dictionnaire
+        # Parcours et stock la position des objets ainsi
+        #  que leurs nom dans un dictionnaire
         for ob in list_objects:
             self.pos_objects[random.choice(passage)] = ob
 

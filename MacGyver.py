@@ -24,10 +24,12 @@ def main():
     state.start_screen(display.home_page())
 
     # Load in memory the map of the game
-    my_lab.load_map_file(display.file_map, display.wall, display.window, display.floor, display.guardian)
+    my_lab.load_map_file(display.map, display.wall,
+        display.window, display.floor, display.guardian) # noqa
 
     # Place objects
-    objects.place_objects(list_objects, my_lab.passages, display.floor, display.window)
+    objects.place_objects(list_objects, my_lab.passages,
+        display.floor, display.window) # noqa
 
     # Place the player on the starting position
     state.init_game(display.player, my_lab.pos_start, display.window)
@@ -37,8 +39,15 @@ def main():
 
     # Loop main of the game
     while state.start_game:
-        state.play_game(moving, display.object_counter(objects.in_pocket, state.the_end), objects, my_lab.wall_list, my_lab.refresh_map(display.wall, display.floor, display.guardian, objects.pos_objects, display.window))
-        state.end_game(objects.in_pocket, my_lab.guardian_radius, display.player)
+
+        state.play_game(moving, # noqa
+            display.object_counter(objects.in_pocket, state.the_end), # noqa
+            objects, my_lab.wall_list, # noqa
+            my_lab.refresh_map(display.wall, display.floor, # noqa
+                display.guardian, objects.pos_objects, display.window)) # noqa
+
+        state.end_game(objects.in_pocket,
+            my_lab.guardian_radius, display.player) # noqa
 
 
 main()

@@ -20,7 +20,8 @@ class Game:
 
         self.window = window
         self.pos_start = pos_start
-        self.player_pos = player.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
+        self.player_pos = player.get_rect(x=self.pos_start[0][0],
+            y=self.pos_start[0][1]) # noqa
         self.player_img = player
 
     def play_game(self, moving, counter, obj, wall_list, refresh_map):
@@ -94,7 +95,8 @@ class Game:
                 self.the_end = True
 
             else:
-                self.player_pos = player.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
+                self.player_pos = player.get_rect(x=self.pos_start[0][0],
+                    y=self.pos_start[0][1]) # noqa
 
         else:
             pass
