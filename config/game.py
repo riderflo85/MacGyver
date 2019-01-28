@@ -8,7 +8,6 @@ import pygame
 class Game:
     """This class manages the behavior of the game"""
 
-
     def __init__(self):
         """Initializes end of game launch variables"""
 
@@ -16,7 +15,6 @@ class Game:
         self.launch_partie = False
         self.the_end = False
 
-    
     def init_game(self, player, pos_start, window):
         """Initializes the starting position of the player"""
 
@@ -24,7 +22,6 @@ class Game:
         self.pos_start = pos_start
         self.player_pos = player.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
         self.player_img = player
-
 
     def play_game(self, moving, counter, obj, wall_list, refresh_map):
         """Manages game events and player position display"""
@@ -67,15 +64,14 @@ class Game:
 
                     if event.key == pygame.K_q:
                         self.start_game = False
-    
+
         counter
         self.window.blit(self.player_img, self.player_pos)
         pygame.display.flip()
 
-
     def start_screen(self, homepage):
         """Load the homepage"""
-        
+
         while self.launch_partie == False:
             homepage
 
@@ -86,7 +82,6 @@ class Game:
                         self.launch_partie = True
 
             pygame.display.flip()
-
 
     def end_game(self, nb_object, pos_arrived, player):
         """Condition of the end of game"""
@@ -100,6 +95,6 @@ class Game:
 
             else:
                 self.player_pos = player.get_rect(x=self.pos_start[0][0], y=self.pos_start[0][1])
-                
+
         else:
             pass

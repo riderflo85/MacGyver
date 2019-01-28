@@ -8,8 +8,9 @@ from config.game import Game
 from config.display import Display
 from config.object import Objects
 
+
 def main():
-    
+
     # Initialize objects
     my_lab = Laby()
     moving = Move()
@@ -23,8 +24,8 @@ def main():
     state.start_screen(display.home_page())
 
     # Load in memory the map of the game
-    my_lab.load_map_file(display.file_map ,display.wall, display.window, display.floor, display.guardian)
-    
+    my_lab.load_map_file(display.file_map, display.wall, display.window, display.floor, display.guardian)
+
     # Place objects
     objects.place_objects(list_objects, my_lab.passages, display.floor, display.window)
 

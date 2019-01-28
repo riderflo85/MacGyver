@@ -5,6 +5,7 @@
 import pygame
 import random
 
+
 class Objects():
     """This class manages the actions of objects"""
 
@@ -14,7 +15,6 @@ class Objects():
         self.pos_objects = {}
         self.in_pocket = 0
 
-    
     def place_objects(self, list_objects, passage, floor, window):
         """Place objects randomly"""
 
@@ -27,7 +27,6 @@ class Objects():
             window.blit(value, keys)
             pygame.display.flip()
 
-    
     def take_objects(self, ply_pos):
         """Recovers an object if the player passes on it"""
 

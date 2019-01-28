@@ -1,14 +1,13 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+
 class Move:
     """This class manages the player’s movements"""
-
 
     def __init__(self):
 
         self.move_valide = False
-    
 
     def move_up(self, ply_pos, wall_list):
         """Movement of playing upward by calculating its future position.
@@ -21,9 +20,8 @@ class Move:
 
         else:
             self.move_valide = False
-        
-        return self.move_valide
 
+        return self.move_valide
 
     def move_down(self, ply_pos, wall_list):
         """Move the player down by calculating its future position.
@@ -39,7 +37,6 @@ class Move:
 
         return self.move_valide
 
-
     def move_left(self, ply_pos, wall_list):
         """Movement of the player to the left by calculating his future position.
         Verifies that future position is possible"""
@@ -53,7 +50,6 @@ class Move:
             self.move_valide = False
 
         return self.move_valide
-
 
     def move_right(self, ply_pos, wall_list):
         """Movement of the player to the right by calculating his future position.

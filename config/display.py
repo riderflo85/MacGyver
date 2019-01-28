@@ -9,7 +9,6 @@ import pygame
 class Display():
     """This class manages the graphic part of the game"""
 
-
     def __init__(self):
         """Initializes all images as well as the window"""
 
@@ -46,17 +45,15 @@ class Display():
         self.startscreen = pygame.image.load(self.img_home).convert()
         self.counter_ob = pygame.image.load(self.img_counter).convert_alpha()
 
-        
     def home_page(self):
         """Show the homepage"""
 
         self.background1.blit(self.startscreen, (0, 0))
         self.window.blit(self.background1, (0, 0))
 
-    
     def object_counter(self, ob, the_end):
         """Displays and manages text on object counter"""
-        
+
         self.background2.blit(self.counter_ob, (0, 600))
         self.type_text = pygame.font.SysFont('ani', 56)
         if the_end:
