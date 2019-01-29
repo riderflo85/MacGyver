@@ -4,7 +4,11 @@
 
 There is only one level, the structure can be modified in map / map.txt.
 
-MacGyver is controlled by the arrow keys :: arrow_left :: arrow_up :: arrow_right :: arrow_down:
+MacGyver is controlled by the arrow keys : 
+    arrow_left
+    arrow_up
+    arrow_right
+    arrow_down
 
 The objects are randomly distributed in the labyrinth and will change location with each new piece.
 
