@@ -14,6 +14,7 @@ class Game:
         self.start_game = True
         self.launch_partie = False
         self.the_end = False
+        self.death = False
 
     def init_game(self, player, pos_start, window):
         """Initializes the starting position of the player"""
@@ -95,8 +96,8 @@ class Game:
                 self.the_end = True
 
             else:
-                self.player_pos = player.get_rect(x=self.pos_start[0][0],
-                    y=self.pos_start[0][1]) # noqa
+                self.death = True
+                self.launch_partie = False
 
         else:
             pass

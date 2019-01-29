@@ -51,13 +51,17 @@ class Display():
         self.background1.blit(self.startscreen, (0, 0))
         self.window.blit(self.background1, (0, 0))
 
-    def object_counter(self, ob, the_end):
+    def object_counter(self, ob, the_end, death):
         """Displays and manages text on object counter"""
 
         self.background2.blit(self.counter_ob, (0, 600))
         self.type_text = pygame.font.SysFont('ani', 56)
         if the_end:
             self.text_status = "YOU WINNER !!!"
+            self.text = self.type_text.render(
+                "{}".format(self.text_status), True, self.COLOR) # noqa
+        elif death:
+            self.text_status = "you death, end game !"
             self.text = self.type_text.render(
                 "{}".format(self.text_status), True, self.COLOR) # noqa
         else:
