@@ -55,16 +55,18 @@ class Display():
         """Displays and manages text on object counter"""
 
         self.background2.blit(self.counter_ob, (0, 600))
-        self.type_text = pygame.font.SysFont('ani', 56)
         if the_end:
+            self.type_text = pygame.font.SysFont('ani', 56)
             self.text_status = "YOU WINNER !!!"
             self.text = self.type_text.render(
                 "{}".format(self.text_status), True, self.COLOR) # noqa
         elif death:
-            self.text_status = "you death, end game !"
+            self.type_text = pygame.font.SysFont('ani', 36)
+            self.text_status = "you don't take all objects! you death!"
             self.text = self.type_text.render(
                 "{}".format(self.text_status), True, self.COLOR) # noqa
         else:
+            self.type_text = pygame.font.SysFont('ani', 56)
             self.text = self.type_text.render(
                 "{}{}/3".format(self.text_status, ob), True, self.COLOR) # noqa
 

@@ -25,12 +25,16 @@ class Game:
             y=self.pos_start[0][1]) # noqa
         self.player_img = player
 
-    def play_game(self, moving, counter, obj, wall_list, refresh_map):
+    def play_game(self, moving, counter, obj, wall_list, refresh_map, display):
         """Manages game events and player position display"""
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.start_game = False
+
+            counter(obj.in_pocket, self.the_end, self.death)
+            refresh_map(display.wall, display.floor, display.guardian,
+                obj.pos_objects, display.window) # noqa
 
             if self.launch_partie:
 
@@ -41,33 +45,28 @@ class Game:
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(40, 0)
                             obj.take_objects(self.player_pos)
-                            refresh_map
 
                     if event.key == pygame.K_LEFT:
                         moving.move_left(self.player_pos, wall_list)
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(-40, 0)
                             obj.take_objects(self.player_pos)
-                            refresh_map
 
                     if event.key == pygame.K_UP:
                         moving.move_up(self.player_pos, wall_list)
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(0, -40)
                             obj.take_objects(self.player_pos)
-                            refresh_map
 
                     if event.key == pygame.K_DOWN:
                         moving.move_down(self.player_pos, wall_list)
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(0, 40)
                             obj.take_objects(self.player_pos)
-                            refresh_map
 
                     if event.key == pygame.K_q:
                         self.start_game = False
 
-        counter
         self.window.blit(self.player_img, self.player_pos)
         pygame.display.flip()
 

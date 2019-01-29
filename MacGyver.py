@@ -40,12 +40,8 @@ def main():
     # Loop main of the game
     while state.start_game:
 
-        state.play_game(moving, # noqa
-            display.object_counter(objects.in_pocket, state.the_end, # noqua
-                state.death), # noqa
-            objects, my_lab.wall_list, # noqa
-            my_lab.refresh_map(display.wall, display.floor, # noqa
-                display.guardian, objects.pos_objects, display.window)) # noqa
+        state.play_game(moving, display.object_counter,
+            objects, my_lab.wall_list, my_lab.refresh_map, display) # noqa
 
         state.end_game(objects.in_pocket,
             my_lab.guardian_radius, display.player) # noqa
