@@ -25,7 +25,8 @@ class Game:
             y=self.pos_start[0][1]) # noqa
         self.player_img = player
 
-    def play_game(self, moving, counter, obj, wall_list, refresh_map, display):
+    def play_game(self, moving, counter, obj, wall_list, passages,
+                    refresh_map, display): # noqa
         """Manages game events and player position display"""
 
         for event in pygame.event.get():
@@ -41,25 +42,25 @@ class Game:
                 if event.type == pygame.KEYDOWN:
 
                     if event.key == pygame.K_RIGHT:
-                        moving.move_right(self.player_pos, wall_list)
+                        moving.move_right(self.player_pos, wall_list, passages)
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(40, 0)
                             obj.take_objects(self.player_pos)
 
                     if event.key == pygame.K_LEFT:
-                        moving.move_left(self.player_pos, wall_list)
+                        moving.move_left(self.player_pos, wall_list, passages)
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(-40, 0)
                             obj.take_objects(self.player_pos)
 
                     if event.key == pygame.K_UP:
-                        moving.move_up(self.player_pos, wall_list)
+                        moving.move_up(self.player_pos, wall_list, passages)
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(0, -40)
                             obj.take_objects(self.player_pos)
 
                     if event.key == pygame.K_DOWN:
-                        moving.move_down(self.player_pos, wall_list)
+                        moving.move_down(self.player_pos, wall_list, passages)
                         if moving.move_valide:
                             self.player_pos = self.player_pos.move(0, 40)
                             obj.take_objects(self.player_pos)

@@ -41,7 +41,8 @@ def main():
     while state.start_game:
 
         state.play_game(moving, display.object_counter,
-            objects, my_lab.wall_list, my_lab.refresh_map, display) # noqa
+            objects, my_lab.wall_list, my_lab.passages, my_lab.refresh_map, # noqa
+                display) # noqa
 
         state.end_game(objects.in_pocket,
             my_lab.guardian_radius, display.player) # noqa
