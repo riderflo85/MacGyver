@@ -47,6 +47,7 @@ class Laby:
 
                     elif colomn == "d":
                         self.pos_start.append((x, y))
+                        self.passages.append((x, y))
                         window.blit(floor, (x, y))
                         pygame.display.flip()
 
